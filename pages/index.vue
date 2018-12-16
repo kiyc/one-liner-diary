@@ -33,7 +33,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
+import { db } from '../plugins/firebase'
 
 export default {
   data () {
@@ -41,17 +42,22 @@ export default {
       newNote: '',
     }
   },
-  computed: mapState(['notes']),
+  computed: {
+    ...mapGetters({ notes: 'getNotes' })
+  },
+  mounted () {
+    this.$store.dispatch('setNotesRef', db.collection('notes'))
+  },
   methods: {
     saveNote () {
       if (!this.newNote.length) {
         return
       }
 
-      const newNote = this.newNote
+      const newNote = { content: this.newNote }
       this.newNote = ''
 
-      this.$store.dispatch('saveNote', newNote)
+      db.collection('notes').add(newNote)
     },
   },
 }
