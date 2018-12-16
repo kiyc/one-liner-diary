@@ -94,12 +94,13 @@
         fixed: false,
         items: [
           { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+          { icon: 'favorite', title: 'New dawn', to: '/newdawn' },
         ],
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: 'One liner diary'
       }
     }
   }
